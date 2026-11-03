@@ -3,15 +3,15 @@
 Registrar y consultar las calificaciones de un grupo desde la consola.
 
 Proyecto Scrum del **Submódulo 2: Aplica metodologías ágiles para el desarrollo de software**
-CBTIS No. 200 · Programación · 3AM PGR · Docente: Mtro. Omar Torres Sánchez
+CBTIS No. 200 · Programación · 3AM PRG · Docente: Mtro. Omar Torres Sánchez
 
 ## Equipo Scrum
 
 | Rol | Integrante |
 |-----|------------|
-| Product Owner | (Miguel Ángel Macias Hernández) |
-| Scrum Master | (Chistopher Jafet Torales Sanchez) |
-| Equipo de desarrollo | (Blas Israel Bautista Sanchez) |
+| Product Owner | Miguel Ángel Macias Hernández |
+| Scrum Master | Blas Israel Bautista Sánchez |
+| Equipo de desarrollo | Blas Israel Bautista Sánchez |
 
 Tablero del proyecto: (https://github.com/users/miguelon-67-69/projects/1)
 
