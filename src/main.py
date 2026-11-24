@@ -18,6 +18,7 @@ from calificaciones import (LIMITE_ALUMNOS, registrar_alumno, validar_calificaci
                             calcular_promedio, obtener_estatus, fila_reporte,
                             promedio_grupal, lista_ordenada, linea_lista,
                             buscar_alumno)
+from almacen import RUTA_DATOS, guardar_datos, cargar_datos
 
 NOMBRE_APP = "CalifiApp"
 OBJETIVO = "Registrar y consultar las calificaciones de un grupo desde la consola"
@@ -139,10 +140,28 @@ def opcion_consultar():
     promedio = calcular_promedio(parciales)
     print(" Promedio:", promedio, obtener_estatus(promedio))
 
+
+# HU-07 Guardar y cargar los datos
+def guardar():
+    guardar_datos(RUTA_DATOS, alumnos, calificaciones)
+    print("  (Datos guardados en data/califiapp.json)")
+
+
+def iniciar_datos():
+    datos = cargar_datos(RUTA_DATOS)
+    if datos is None:
+        print("¡Cuidado! data/califiapp.json está dañado. CalifiApp inicia vacía.")
+        return
+    alumnos.extend(datos["alumnos"])
+    calificaciones.update(datos["calificaciones"])
+    print("Se cargaron", len(alumnos), "alumnos de data/califiapp.json")
+    
+
 # ==============================================================
 #  Menú principal
 # ==============================================================
 def main():
+    iniciar_datos()
     opcion = ""
     while opcion != "0":
         print()
@@ -162,8 +181,10 @@ def main():
 
         if opcion == "1":
             opcion_registrar()
+            guardar()
         elif opcion == "2":
             opcion_capturar()
+            guardar()
         elif opcion == "3":
             opcion_promedios()
         elif opcion == "4":

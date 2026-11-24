@@ -1,0 +1,24 @@
+{
+  "alumnos": [
+    "Luis Pérez",
+    "ana lópez",
+    "Carla Ruiz"
+  ],
+  "calificaciones": {
+    "Luis Pérez": [
+      8.0,
+      9.0,
+      7.0
+    ],
+    "ana lópez": [
+      5.0,
+      6.0,
+      4.0
+    ],
+    "Carla Ruiz": [
+      9.0,
+      10.0,
+      9.5
+    ]
+  }
+}
