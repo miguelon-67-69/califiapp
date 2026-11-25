@@ -2,7 +2,8 @@
   "alumnos": [
     "Luis Pérez",
     "ana lópez",
-    "Carla Ruiz"
+    "Carla Ruiz",
+    "Beto Díaz"
   ],
   "calificaciones": {
     "Luis Pérez": [
@@ -19,6 +20,11 @@
       9.0,
       10.0,
       9.5
+    ],
+    "Beto Díaz": [
+      3.0,
+      5.0,
+      4.0
     ]
   }
 }

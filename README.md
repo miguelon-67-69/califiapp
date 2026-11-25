@@ -20,11 +20,13 @@ Tablero del proyecto: (https://github.com/users/miguelon-67-69/projects/1)
 | HU | Historia | Estado |
 |----|----------|--------|
 | HU-01 | Registrar alumnos (máximo 30, sin nombres repetidos) | Terminada |
-| HU-02 | Capturar calificaciones de 0 a 10 | Terminada |
+| HU-02 | Capturar calificaciones de 0 a 10 | Terminada (Sprint 2: solo pide a los que faltan) ||
 | HU-03 | Calcular promedio y estatus (aprueba con 6) | Terminada |
 | HU-04 | Mostrar reporte del grupo | Terminada |
 | HU-05 | Ver la lista del grupo en orden alfabético con su total | Terminada (Sprint 1) |
 | HU-06 | Consultar a un alumno: sus parciales y su promedio | Terminada (Sprint 1) |
+| HU-07 | Guardar el grupo en data/califiapp.json y cargarlo al abrir | Terminada (Sprint 2) |
+| HU-08 | Ver alumnos en riesgo (promedio menor a 6), del más bajo al más alto | Terminada (Sprint 2) |
 
 ## Cómo ejecutar
 
@@ -35,6 +37,18 @@ Tablero del proyecto: (https://github.com/users/miguelon-67-69/projects/1)
 Incremento: opciones 5 (HU-05) y 6 (HU-06) del menú, con 5 pruebas nuevas (18 en total).
 
 Lo que aprendimos en la Sprint Review: (lo llenas en la Jugada 9)
+
+## Sprint 2 (17 y 20 de noviembre de 2026)
+
+**Objetivo del Sprint:** que CalifiApp recuerde al grupo al cerrarla y le avise al docente qué 
+alumnos van reprobando.
+
+Incremento: módulo `almacen.py` (HU-07), opción 7 (HU-
+08) y corrección del defecto de captura. 26 pruebas. Velocidad: 7 puntos.
+
+Lo que aprendimos en el Sprint 2: al guardar los datos apareció un defecto que antes no se nota
+ba (la opción 2 volvía a pedir las calificaciones de todos y las sobrescribía). Lo corregimos d
+entro del sprint porque ponía en riesgo el objetivo.
 
 Abre PowerShell **dentro de la carpeta califiapp** y escribe:
 

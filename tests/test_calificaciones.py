@@ -97,5 +97,39 @@ class HU06ConsultarAlumno(unittest.TestCase):
 
     def test_buscar_alumno_que_no_existe(self):
         self.assertIsNone(buscar_alumno(["Ana López"], "Pedro"))
+        
+
+class HU02DefectoCapturaRepetida(unittest.TestCase):
+
+    def test_solo_los_que_no_tienen_calificaciones(self):
+        alumnos = ["Ana López", "Luis Pérez", "Carla Ruiz"]
+        calificaciones = {"Ana López": [8.0, 9.0, 10.0]}
+        self.assertEqual(alumnos_sin_calificar(alumnos, calificaciones),
+                         ["Luis Pérez", "Carla Ruiz"])
+
+    def test_todos_calificados_regresa_lista_vacia(self):
+        alumnos = ["Ana López"]
+        calificaciones = {"Ana López": [8.0, 9.0, 10.0]}
+        self.assertEqual(alumnos_sin_calificar(alumnos, calificaciones), [])
+        
+        
+class HU08AlumnosEnRiesgo(unittest.TestCase):
+
+    def test_solo_aparecen_los_reprobados(self):
+        calificaciones = {"Ana López": [8.0, 8.0, 8.0],
+                          "Luis Pérez": [5.0, 5.0, 6.0]}
+        self.assertEqual(alumnos_en_riesgo(calificaciones), [("Luis Pérez", 5.3)])
+
+    def test_del_promedio_mas_bajo_al_mas_alto(self):
+        calificaciones = {"Carla Ruiz": [5.0, 5.0, 5.0],
+                          "Beto Díaz": [2.0, 3.0, 4.0]}
+        self.assertEqual(alumnos_en_riesgo(calificaciones),
+                         [("Beto Díaz", 3.0), ("Carla Ruiz", 5.0)])
+
+    def test_nadie_en_riesgo(self):
+        calificaciones = {"Ana López": [6.0, 6.0, 6.0]}
+        self.assertEqual(alumnos_en_riesgo(calificaciones), [])
+        
+        
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -67,3 +67,26 @@ def buscar_alumno(alumnos, nombre):
         if registrado.lower() == nombre:
             return registrado
     return None
+
+
+# HU-02 (defecto del Sprint 2): capturar solo a los que faltan
+def alumnos_sin_calificar(alumnos, calificaciones):
+    pendientes = []
+    for nombre in alumnos:
+        if nombre not in calificaciones:
+            pendientes.append(nombre)
+    return pendientes
+
+
+# HU-08 Ver alumnos en riesgo
+def promedio_de(pareja):
+    return pareja[1]
+
+
+def alumnos_en_riesgo(calificaciones):
+    en_riesgo = []
+    for nombre in calificaciones:
+        promedio = calcular_promedio(calificaciones[nombre])
+        if promedio < MINIMA_APROBATORIA:
+            en_riesgo.append((nombre, promedio))
+    return sorted(en_riesgo, key=promedio_de)
