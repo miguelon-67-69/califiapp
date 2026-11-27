@@ -131,5 +131,19 @@ class HU08AlumnosEnRiesgo(unittest.TestCase):
         self.assertEqual(alumnos_en_riesgo(calificaciones), [])
         
         
+class HU09FilasDelReporte(unittest.TestCase):
+
+    def test_cada_fila_tiene_seis_columnas(self):
+        calificaciones = {"Ana López": [8.0, 9.0, 10.0]}
+        self.assertEqual(filas_reporte(calificaciones),
+                         [["Ana López", 8.0, 9.0, 10.0, 9.0, "APROBADO"]])
+
+    def test_filas_de_menor_a_mayor_promedio(self):
+        calificaciones = {"Carla Ruiz": [9.0, 10.0, 9.5],
+                          "Beto Díaz": [3.0, 5.0, 4.0]}
+        filas = filas_reporte(calificaciones)
+        self.assertEqual(filas[0][0], "Beto Díaz")
+        self.assertEqual(filas[1][0], "Carla Ruiz")
+        
 if __name__ == "__main__":
     unittest.main(verbosity=2)

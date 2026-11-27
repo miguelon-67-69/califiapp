@@ -3,7 +3,8 @@
     "Luis Pérez",
     "ana lópez",
     "Carla Ruiz",
-    "Beto Díaz"
+    "Beto Díaz",
+    "Dana Gil"
   ],
   "calificaciones": {
     "Luis Pérez": [
@@ -25,6 +26,11 @@
       3.0,
       5.0,
       4.0
+    ],
+    "Dana Gil": [
+      7.0,
+      5.0,
+      8.0
     ]
   }
 }

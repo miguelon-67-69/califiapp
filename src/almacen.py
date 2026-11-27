@@ -1,5 +1,6 @@
 # almacen.py - Guardar y cargar los datos de CalifiApp (HU-07)
 # Es el ÚNICO archivo de CalifiApp que toca el disco.
+import csv
 import json
 import os
 
@@ -28,3 +29,16 @@ def cargar_datos(ruta):
             return json.load(archivo)
     except json.JSONDecodeError:
         return None
+    
+    
+    # HU-09 Exportar el reporte a CSV (Excel lo abre con doble clic)
+def exportar_csv(ruta, encabezado, filas):
+    os.makedirs(os.path.dirname(ruta), exist_ok=True)
+    try:
+        with open(ruta, "w", encoding="utf-8-sig", newline="") as archivo:
+            escritor = csv.writer(archivo)
+            escritor.writerow(encabezado)
+            escritor.writerows(filas)
+        return True
+    except PermissionError:
+        return False

@@ -90,3 +90,20 @@ def alumnos_en_riesgo(calificaciones):
         if promedio < MINIMA_APROBATORIA:
             en_riesgo.append((nombre, promedio))
     return sorted(en_riesgo, key=promedio_de)
+
+# HU-09 Exportar el reporte a CSV
+ENCABEZADO_REPORTE = ["Alumno", "Parcial 1", "Parcial 2", "Parcial 3", "Promedio", "Estatus"]
+
+
+def promedio_de_fila(fila):
+    return fila[4]
+
+
+def filas_reporte(calificaciones):
+    filas = []
+    for nombre in calificaciones:
+        parciales = calificaciones[nombre]
+        promedio = calcular_promedio(parciales)
+        fila = [nombre] + parciales + [promedio, obtener_estatus(promedio)]
+        filas.append(fila)
+    return sorted(filas, key=promedio_de_fila)
