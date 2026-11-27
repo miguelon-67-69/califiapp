@@ -107,3 +107,29 @@ def filas_reporte(calificaciones):
         fila = [nombre] + parciales + [promedio, obtener_estatus(promedio)]
         filas.append(fila)
     return sorted(filas, key=promedio_de_fila)
+
+
+# HU-10 Estadísticas del grupo
+def porcentaje_aprobacion(aprobados, total):
+    if total == 0:
+        return 0.0
+    return round(aprobados * 100 / total, 1)
+
+
+def estadisticas(calificaciones):
+    filas = filas_reporte(calificaciones)
+    promedios = []
+    aprobados = 0
+    for fila in filas:
+        promedios.append(fila[4])
+        if fila[5] == "APROBADO":
+            aprobados = aprobados + 1
+    return {
+        "total": len(filas),
+        "aprobados": aprobados,
+        "reprobados": len(filas) - aprobados,
+        "porcentaje": porcentaje_aprobacion(aprobados, len(filas)),
+        "promedio_grupal": promedio_grupal(promedios),
+        "mas_bajo": [filas[0][0], filas[0][4]],
+        "mas_alto": [filas[-1][0], filas[-1][4]],
+    }

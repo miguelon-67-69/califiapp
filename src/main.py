@@ -21,9 +21,10 @@ from calificaciones import (LIMITE_ALUMNOS, registrar_alumno, validar_calificaci
                             calcular_promedio, obtener_estatus, fila_reporte,
                             promedio_grupal, lista_ordenada, linea_lista,
                             buscar_alumno,alumnos_sin_calificar,
-                            alumnos_en_riesgo)
+                            alumnos_en_riesgo, ENCABEZADO_REPORTE, filas_reporte,
+                            estadisticas)
 
-from almacen import RUTA_DATOS, guardar_datos, cargar_datos
+from almacen import RUTA_DATOS, guardar_datos, cargar_datos, RUTA_REPORTE, exportar_csv
 
 NOMBRE_APP = "CalifiApp"
 OBJETIVO = "Registrar y consultar las calificaciones de un grupo desde la consola"
@@ -166,6 +167,36 @@ def opcion_riesgo():
     print("En riesgo:", len(en_riesgo), "de", len(calificaciones), "alumnos con calificaciones")
 
 
+# HU-09 Exportar el reporte a CSV
+def opcion_exportar():
+    if len(calificaciones) == 0:
+        print("\nPrimero captura calificaciones (opción 2).")
+        return
+    filas = filas_reporte(calificaciones)
+    if exportar_csv(RUTA_REPORTE, ENCABEZADO_REPORTE, filas):
+        print("\nReporte exportado a data/reporte_grupo.csv con", len(filas), "alumnos.")
+        print("Ábrelo con doble clic: se abre en Excel.")
+    else:
+        print("\nNo se pudo exportar: cierra reporte_grupo.csv en Excel y vuelve a intentar.")
+
+
+# HU-10 Estadísticas del grupo
+def opcion_estadisticas():
+    if len(calificaciones) == 0:
+        print("\nPrimero captura calificaciones (opción 2).")
+        return
+    datos = estadisticas(calificaciones)
+    print("\nESTADÍSTICAS DEL GRUPO")
+    print("-" * 50)
+    print("Alumnos con calificaciones:", datos["total"])
+    print("Aprobados:", datos["aprobados"], "  Reprobados:", datos["reprobados"])
+    print("Porcentaje de aprobación:", datos["porcentaje"], "%")
+    print("Promedio grupal:", datos["promedio_grupal"])
+    print("Promedio más alto:", datos["mas_alto"][0], "con", datos["mas_alto"][1])
+    print("Promedio más bajo:", datos["mas_bajo"][0], "con", datos["mas_bajo"][1])
+    print("-" * 50)
+
+
 # HU-07 Guardar y cargar los datos
 def guardar():
     guardar_datos(RUTA_DATOS, alumnos, calificaciones)
@@ -200,6 +231,8 @@ def main():
         print("  5. Ver lista del grupo           (HU-05)")
         print("  6. Consultar a un alumno         (HU-06)")
         print("  7. Ver alumnos en riesgo         (HU-08)")
+        print("  8. Exportar reporte a Excel      (HU-09)")
+        print("  9. Estadísticas del grupo        (HU-10)")
         print("  0. Salir")
         print("-" * 50)
 
@@ -221,10 +254,14 @@ def main():
             opcion_consultar()
         elif opcion == "7":
             opcion_riesgo()
+        elif opcion == "8":
+            opcion_exportar()
+        elif opcion == "9":
+            opcion_estadisticas()
         elif opcion == "0":
             print("Gracias por usar " + NOMBRE_APP + ". ¡Hasta pronto!")
         else:
-            print("\nOpción no válida. Escribe un número del 0 al 7.")
+            print("\nOpción no válida. Escribe un número del 0 al 9.")
 
         if opcion != "0":
             input("\nPresiona ENTER para volver al menú...")

@@ -145,5 +145,26 @@ class HU09FilasDelReporte(unittest.TestCase):
         self.assertEqual(filas[0][0], "Beto Díaz")
         self.assertEqual(filas[1][0], "Carla Ruiz")
         
+class HU10EstadisticasDelGrupo(unittest.TestCase):
+
+    def test_porcentaje_de_aprobacion(self):
+        self.assertEqual(porcentaje_aprobacion(3, 4), 75.0)
+        self.assertEqual(porcentaje_aprobacion(1, 3), 33.3)
+
+    def test_porcentaje_sin_alumnos(self):
+        self.assertEqual(porcentaje_aprobacion(0, 0), 0.0)
+
+    def test_estadisticas_del_grupo(self):
+        calificaciones = {"Ana López": [8.0, 8.0, 8.0], "Beto Díaz": [3.0, 5.0, 4.0],
+                          "Carla Ruiz": [9.0, 10.0, 9.5], "Luis Pérez": [5.0, 5.0, 6.0]}
+        datos = estadisticas(calificaciones)
+        self.assertEqual(datos["total"], 4)
+        self.assertEqual(datos["aprobados"], 2)
+        self.assertEqual(datos["reprobados"], 2)
+        self.assertEqual(datos["porcentaje"], 50.0)
+        self.assertEqual(datos["mas_bajo"], ["Beto Díaz", 4.0])
+        self.assertEqual(datos["mas_alto"], ["Carla Ruiz", 9.5])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

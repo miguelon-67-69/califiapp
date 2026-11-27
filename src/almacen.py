@@ -8,7 +8,7 @@ import os
 # la carpeta donde abriste PowerShell: así siempre encuentra data/.
 CARPETA_SRC = os.path.dirname(os.path.abspath(__file__))
 RUTA_DATOS = os.path.join(CARPETA_SRC, "..", "data", "califiapp.json")
-
+RUTA_REPORTE  = os.path.join(CARPETA_SRC, "..", "data", "reporte_grupo.csv")
 
 def datos_vacios():
     return {"alumnos": [], "calificaciones": {}}
